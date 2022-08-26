@@ -8,6 +8,7 @@ define(function (require) {
   require('components/addUpdateUser');
   require('components/report-by-user');
   require('components/report-by-date');
+  require('components/generate-test-data');
 
 
   const getUrlParameter = function getUrlParameter(sParam) {
@@ -39,13 +40,15 @@ define(function (require) {
         <hr />
         <download-button />
         <hr />
-        <debug-out />
-        <hr />
         <addUpdateUser />
         <hr />
         <report-by-user />
         <hr />
         <report-by-date />
+        <hr />
+        <generate-test-data />
+        <hr />
+        <debug-out />
       </div>
         `,
   });

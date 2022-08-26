@@ -14,7 +14,14 @@ define(function (require) {
       methods: {
         addUpdateUser: function() {
           const {name, sex, age} = this;
-          this.$store.commit("addUpdateUser", {name, sex, age});
+          if(!name || !sex || !age) {
+            alert("You have to enter a name and choose sex and age!");
+          } else {
+            this.$store.commit("addUpdateUser", {name, sex, age});
+            this.name = "";
+            this.sex = "";
+            this.age = "";
+          }
         }
       },
       computed: {

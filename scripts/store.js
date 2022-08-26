@@ -8,7 +8,8 @@ define(function(require) {
 
   return new Vuex.Store({
     state: {
-      data: { "users": [ { "id": 1, "name": "test", "sex": "m", "age": "3", "lastVisit": "2022-08-24", "visits": [ "2022-08-24", "2022-08-23", "2022-08-21", "2022-07-24", "2022-05-04"] } ] }
+      data: { "users": [ 
+      ]}
     },
     mutations: {
       addUpdateUser(state, value) {
@@ -17,8 +18,17 @@ define(function(require) {
         const nowDate = now.getUTCFullYear() + "-" + zeroPad(now.getUTCMonth() + 1, 2) + "-" + zeroPad(now.getUTCDate(), 2);
         if (userArr.length > 0) {
           userArr.filter(e => e.lastVisit !== nowDate).forEach(e => {
-            e.lastVisit = nowDate;
-            e.visits.push(nowDate);  
+            if(e.sex !== value.sex || e.age !== value.age) {
+              if(confirm("Found a user with the name name, but different sex or age. Confirm to overwrite this user!")) {
+                e.lastVisit = nowDate;
+                e.sex = value.sex;
+                e.age = value.age;
+                e.visits.push(nowDate);  
+              }
+            } else {
+              e.lastVisit = nowDate;
+              e.visits.push(nowDate);  
+            }
           });
         } else {
           state.data.users.push({
